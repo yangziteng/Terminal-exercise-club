@@ -1,9 +1,9 @@
 package com.example.demo.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.terminalex.dao.UserDao;
-import com.terminalex.domain.User;
-import com.terminalex.service.UserService;
+import com.example.demo.dao.UserDao;
+import com.example.demo.domain.User;
+import com.example.demo.service.UserService;
 import org.springframework.stereotype.Service;
 
 @Service

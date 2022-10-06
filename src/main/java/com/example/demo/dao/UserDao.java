@@ -1,7 +1,7 @@
 package com.example.demo.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.terminalex.domain.User;
+import com.example.demo.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
