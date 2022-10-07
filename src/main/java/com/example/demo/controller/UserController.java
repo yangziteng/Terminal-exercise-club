@@ -64,8 +64,9 @@ public class UserController {
             return Result.error("登陆失败");
         }
 
-        //登陆成功,将员工id放入session并返回登陆成功
-        request.getSession().setAttribute("employee", user1.getId());
+        //登陆成功,将员工id线程存储并返回登陆成功
+        //BaseContext.setCurrentId(user1.getId());
+        request.getSession().setAttribute("user", user1.getId());
         return Result.success(user1);
     }
 
