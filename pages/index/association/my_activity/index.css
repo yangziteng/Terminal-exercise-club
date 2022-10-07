@@ -112,6 +112,7 @@ page {
 }
 .cu-list.menu-avatar > .cu-item .content.flex-sub {
     width: calc(100% - 96rpx - 60rpx - 20rpx);
+	margin-top: 26rpx;
 }
 .cu-list.menu-avatar > .cu-item .content {
     position: absolute;
@@ -156,9 +157,7 @@ page {
     display: flex;
     flex-wrap: wrap;
 }
-.flex-sub {
-    flex: 1;
-}
+
 .bg-img {
     background-size: cover;
     background-position: center;
