@@ -21,6 +21,10 @@ public class User implements Serializable {
 
     private String tel;
 
+    private Long schoolId;
+
+    private Long academicId;
+
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
