@@ -6,12 +6,10 @@ import com.example.demo.domain.Association;
 import com.example.demo.service.AssociationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping("/association")
@@ -19,6 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 public class AssociationController {
     @Autowired
     private AssociationService associationService;
+
+    @GetMapping
+    public Result<List<Association>> list(Integer status) {
+        LambdaQueryWrapper<Association> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Association::getStatus, status);
+        List<Association> list = associationService.list(wrapper);
+        return Result.success(list);
+    }
 
     @PostMapping("/apply")
     public Result<String> apply(HttpServletRequest request, @RequestBody Association association) {
@@ -41,5 +47,11 @@ public class AssociationController {
         //数据库中没有该用户数据,注册成功
         associationService.save(association);
         return Result.success("社团申请成功,待审核");
+    }
+
+    @PutMapping
+    public Result<String> update(@RequestBody Association association) {
+        boolean b = associationService.updateById(association);
+        return b? Result.success("社团信息更新成功"): Result.error("社团信息更新失败,未找到该社团");
     }
 }
