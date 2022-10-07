@@ -68,7 +68,7 @@ export default {
                     name: 'Activity schedule',
                     color: 'cyan',
                     index: '3',
-                    url: '/pages/association_new/my_activity/my_activity'
+                    url: '/pages/index/association/my_activity/index'
                 },
                 {
                     title: '社团机构管理',

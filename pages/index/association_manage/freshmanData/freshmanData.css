@@ -1,0 +1,217 @@
+/* ==================
+        初始化
+ ==================== */
+page {
+    /* Color 可以自定义相关配色 */
+    /* var属性兼容性 --> https://www.caniuse.com/#feat=css-variables */
+    /* 标准色 */
+    --red: #e54d42;
+    --orange: #f37b1d;
+    --yellow: #fbbd08;
+    --olive: #8dc63f;
+    --green: #39b54a;
+    --cyan: #1cbbb4;
+    --blue: #0081ff;
+    --purple: #6739b6;
+    --mauve: #9c26b0;
+    --pink: #e03997;
+    --brown: #a5673f;
+    --grey: #8799a3;
+    --black: #333333;
+    --darkGray: #666666;
+    --gray: #aaaaaa;
+    --ghostWhite: #f1f1f1;
+    --white: #ffffff;
+    /* 浅色 */
+    --redLight: #fadbd9;
+    --orangeLight: #fde6d2;
+    --yellowLight: #fef2ce;
+    --oliveLight: #e8f4d9;
+    --greenLight: #d7f0db;
+    --cyanLight: #d2f1f0;
+    --blueLight: #cce6ff;
+    --purpleLight: #e1d7f0;
+    --mauveLight: #ebd4ef;
+    --pinkLight: #f9d7ea;
+    --brownLight: #ede1d9;
+    --greyLight: #e7ebed;
+    /* 渐变色 */
+    --gradualRed: linear-gradient(45deg, #f43f3b, #ec008c);
+    --gradualOrange: linear-gradient(45deg, #ff9700, #ed1c24);
+    --gradualGreen: linear-gradient(45deg, #39b54a, #8dc63f);
+    --gradualPurple: linear-gradient(45deg, #9000ff, #5e00ff);
+    --gradualPink: linear-gradient(45deg, #ec008c, #6739b6);
+    --gradualBlue: linear-gradient(45deg, #0081ff, #1cbbb4);
+    /* 阴影透明色 */
+    --ShadowSize: 6rpx 6rpx 8rpx;
+    --redShadow: rgba(204, 69, 59, 0.2);
+    --orangeShadow: rgba(217, 109, 26, 0.2);
+    --yellowShadow: rgba(224, 170, 7, 0.2);
+    --oliveShadow: rgba(124, 173, 55, 0.2);
+    --greenShadow: rgba(48, 156, 63, 0.2);
+    --cyanShadow: rgba(28, 187, 180, 0.2);
+    --blueShadow: rgba(0, 102, 204, 0.2);
+    --purpleShadow: rgba(88, 48, 156, 0.2);
+    --mauveShadow: rgba(133, 33, 150, 0.2);
+    --pinkShadow: rgba(199, 50, 134, 0.2);
+    --brownShadow: rgba(140, 88, 53, 0.2);
+    --greyShadow: rgba(114, 130, 138, 0.2);
+    --grayShadow: rgba(114, 130, 138, 0.2);
+    --blackShadow: rgba(26, 26, 26, 0.2);
+
+    background-color: var(--ghostWhite);
+    font-size: 28rpx;
+    color: var(--black);
+    font-family: Helvetica Neue, Helvetica, sans-serif;
+}
+/* ==================
+         表单
+ ==================== */
+
+.cu-form-group {
+    background-color: var(--white);
+    padding: 1rpx 30rpx;
+    display: flex;
+    align-items: center;
+    min-height: 100rpx;
+    justify-content: space-between;
+}
+
+.cu-form-group + .cu-form-group {
+    border-top: 1rpx solid #eee;
+}
+
+.cu-form-group .title {
+    text-align: justify;
+    padding-right: 30rpx;
+    font-size: 30rpx;
+    position: relative;
+    height: 60rpx;
+    line-height: 60rpx;
+}
+
+.cu-form-group input {
+    flex: 1;
+    font-size: 30rpx;
+    color: #555;
+    padding-right: 20rpx;
+}
+
+.cu-form-group > text[class*='cuIcon-'] {
+    font-size: 36rpx;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.cu-form-group textarea {
+    margin: 32rpx 0 30rpx;
+    height: 4.6em;
+    width: 100%;
+    line-height: 1.2em;
+    flex: 1;
+    font-size: 28rpx;
+    padding: 0;
+}
+
+.cu-form-group.align-start .title {
+    height: 1em;
+    margin-top: 32rpx;
+    line-height: 1em;
+}
+
+.cu-form-group picker {
+    flex: 1;
+    padding-right: 40rpx;
+    overflow: hidden;
+    position: relative;
+}
+
+.cu-form-group picker .picker {
+    line-height: 100rpx;
+    font-size: 28rpx;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-align: right;
+}
+
+.cu-form-group picker::after {
+    font-family: 'cuIcon';
+    display: block;
+    content: '\e6a3';
+    position: absolute;
+    font-size: 34rpx;
+    color: var(--grey);
+    line-height: 100rpx;
+    width: 60rpx;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    right: -20rpx;
+    margin: auto;
+}
+
+.cu-form-group textarea[disabled],
+.cu-form-group textarea[disabled] .placeholder {
+    color: transparent;
+}
+
+switch,
+checkbox,
+radio {
+    position: relative;
+}
+
+.wrap {
+    font-size: 32rpx;
+}
+
+.wrap .caption {
+    text-align: center;
+    color: #63a1a0;
+}
+
+.item_wrap {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    margin: 24rpx;
+    padding: 16rpx;
+    height: 60rpx;
+    display: flex;
+    align-items: center;
+    border-radius: 15rpx;
+}
+
+.wrap .item_wrap .content_wrap {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    padding: 12rpx;
+    margin: 12rpx;
+    border-radius: 12rpx;
+}
+
+.from {
+    flex: 3;
+}
+
+.wrap .item_wrap .content_wrap .status {
+    /* flex: 1; */
+}
+
+.wrap .tip {
+    text-align: center;
+    margin-top: 24rpx;
+    color: #7c7c7c;
+}
+checkbox.round .wx-checkbox-input {
+    border-radius: 100rpx;
+}
+.round {
+    border-radius: 5000rpx;
+    transition: all 0.5s;
+    margin-left: 15rpx;
+    margin-right: -10rpx;
+}

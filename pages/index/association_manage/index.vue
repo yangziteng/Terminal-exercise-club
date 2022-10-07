@@ -11,7 +11,7 @@
                     <view class="list_item">
                         <view class="left2">上传logo</view>
                         <view v-if="!img" @tap="add_logo">
-                            <image class="add_logo_img" data-name="logo" src="/static/pages/association/img/paizhao.png"></image>
+                            <image class="add_logo_img" data-name="logo" src="./images/paizhao.png"></image>
                         </view>
                         <view v-if="img" @tap="add_logo">
                             <image class="add_logo_img" data-name="logo" :src="imgUrl"></image>
@@ -23,7 +23,7 @@
                     <view class="list_item">
                         <view class="left2">群二维码</view>
                         <view v-if="!img2" @tap="add_logo">
-                            <image class="add_logo_img" data-name="qun" src="/static/pages/association/img/paizhao.png"></image>
+                            <image class="add_logo_img" data-name="qun" src="./images/paizhao.png"></image>
                         </view>
                         <view v-if="img2" @tap="add_logo">
                             <image class="add_logo_img" data-name="qun" :src="imgUrl2"></image>

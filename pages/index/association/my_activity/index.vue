@@ -105,5 +105,5 @@
 </script>
 
 <style lang="scss">
-	@import "./my_activity.css";
+	@import "./index.css";
 </style>
