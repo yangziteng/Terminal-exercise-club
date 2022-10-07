@@ -7,10 +7,8 @@ import com.example.demo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
@@ -68,6 +66,12 @@ public class UserController {
         //BaseContext.setCurrentId(user1.getId());
         request.getSession().setAttribute("user", user1.getId());
         return Result.success(user1);
+    }
+
+    @PutMapping
+    public Result<String> update(@RequestBody User user) {
+        userService.updateById(user);
+        return Result.success("修改成功");
     }
 
     @PostMapping("/logout")

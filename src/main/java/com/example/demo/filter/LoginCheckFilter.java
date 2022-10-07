@@ -41,26 +41,12 @@ public static final AntPathMatcher PATH_MATCHER = new AntPathMatcher();
             return;
         }
         //如果已登录则直接放行
-        if (request.getSession().getAttribute("employee") != null){
-            log.info("用户已登录,用户id为{}",request.getSession().getAttribute("employee"));
-
-            //使用线程存放当前用户id
-            Long empId = (Long) request.getSession().getAttribute("employee");
-            BaseContext.setCurrentId(empId);
-
-            /*long id = Thread.currentThread().getId();
-            log.info("线程为{}",id);*/
-
-            filterChain.doFilter(request,response);
-            return;
-        }
-        //移动端如果已登录则直接放行
         if (request.getSession().getAttribute("user") != null){
             log.info("用户已登录,用户id为{}",request.getSession().getAttribute("user"));
 
             //使用线程存放当前用户id
-            Long userId = (Long) request.getSession().getAttribute("user");
-            BaseContext.setCurrentId(userId);
+            Long empId = (Long) request.getSession().getAttribute("user");
+            BaseContext.setCurrentId(empId);
 
             /*long id = Thread.currentThread().getId();
             log.info("线程为{}",id);*/
