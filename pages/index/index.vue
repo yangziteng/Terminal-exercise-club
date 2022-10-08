@@ -118,7 +118,19 @@ export default {
      * 生命周期函数--监听页面加载
      */,
     onLoad(options) {
-        
+		//测试
+		// uni.request({
+		// 	url:"http://127.0.0.1:4523/m1/1710071-0-default/my_activity/list",
+		// 	method:"POST",
+		// 	data:{
+				
+		// 	},
+		// 	success(res){
+		// 		console.log(res)
+		// 	},fail(e){
+		// 		console.log(e)
+		// 	}
+		// })
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

@@ -163,7 +163,7 @@ export default {
                 {
                     title: '联系方式',
                     placeholder: '电话号码',
-                    type: 'number',
+                    type: 'text',
                     value: '',
                     id: 'phone'
                 },
@@ -177,7 +177,7 @@ export default {
                 {
                     title: '学号',
                     placeholder: '输入学号',
-                    type: 'number',
+                    type: 'text',
                     value: '',
                     id: 'card'
                 },
@@ -485,8 +485,8 @@ export default {
             console.log(e);
             var department;
             let data = e.detail.value;
-
-            if (data.association == '' || data.card == '' || data.name == '' || data.phone == '' || !this.imgUrl || data.department == '') {
+			console.log(data)
+            if (data.association == '' || data.card == '' || data.name == '' || data.phone == '' || data.department == '') {
                 uni.showToast({
                     title: '您还有信息还未填写~',
                     icon: 'none'
@@ -533,29 +533,35 @@ export default {
                                 title: '提交中',
                                 mask: true,
                                 success: (result) => {
-                                    db.collection('associationApply')
-                                        .add({
-                                            data: {
-                                                status: false,
-                                                hostMess: data,
-                                                count: String(data.card),
-                                                logoUrl: this.imgUrl,
-                                                erweimaUrl: this.imgUrl2,
-                                                activityCount: 1,
-                                                personCount: 1,
-                                                school: school,
-                                                department: department,
-                                                //设立部门
-                                                xueyuan,
-                                                school_name: this.array[this.arrayIndex]
-                                            }
-                                        })
+                                    uni.request({
+										url:"http://127.0.0.1:4523/m1/1710071-0-default/manage/apply/submit",
+										method:"POST",
+										data:{
+											status: false,
+											hostMess: data,
+											count: "xxxxxx",
+											logoUrl: this.imgUrl,
+											erweimaUrl: this.imgUrl2,
+											activityCount: 1,
+											personCount: 1,
+											department: department,
+											xueyuan,
+											school_name: this.array[this.arrayIndex]
+										}
+									})
+                                        
                                         .then((res) => {
+											console.log(res)
                                             this.setData({
                                                 HtmlStatus: 1
                                             });
                                             uni.hideLoading();
-                                        });
+                                        })
+										.catch(e=>{
+											uni.hideLoading()
+											console.log(e)
+										})
+										
                                 }
                             });
                         }

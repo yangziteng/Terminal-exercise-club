@@ -51,42 +51,33 @@
 					<block>
 						<button class="more_item" @tap="about" hover-class="btn_hover">
 							<view class="left">
-								<image src="/static/images/myself/aboutUs.png"></image>
-								<text class="title">关于我们</text>
+								<image src="./images/aboutUs.png"></image>
+								<text class="title">github</text>
 							</view>
 							<view class="right">
-								<text>联系客服</text>
-								<image class="jt" src='/pages/myself/images/right.png'></image>
+								<text>github</text>
+								<image class="jt" src='./images/right.png'></image>
 							</view>
 						</button>
-						<button class="more_item" @tap="journal" hover-class="btn_hover">
-							<view class="left">
-								<image src="/static/images/myself/update.png"></image>
-								<text class="title">更新日志</text>
-							</view>
-							<view class="right">
-								<text>更新日志</text>
-								<image class="jt" src='/pages/myself/images/right.png'></image>
-							</view>
-						</button>
+					
 						<button class="more_item" @tap="login" hover-class="btn_hover">
 							<view class="left">
-								<image src="/static/images/myself/login.png"></image>
+								<image src="./images/login.png"></image>
 								<text class="title">登录/注销账号</text>
 							</view>
 							<view class="right">
 								<text>登录/注销</text>
-								<image class="jt" src='/pages/myself/images/right.png'></image>
+								<image class="jt" src='./images/right.png'></image>
 							</view>
 						</button>
 						<button class="more_item" open-type="share" hover-class="btn_hover">
 							<view class="left">
-								<image src="/static/images/myself/flag.png"></image>
+								<image src="./images/flag.png"></image>
 								<text class="title">推荐给好友</text>
 							</view>
 							<view class="right">
 								<text>方便更多同学</text>
-								<image class="jt" src='/pages/myself/images/right.png'></image>
+								<image class="jt" src='./images/right.png'></image>
 							</view>
 						</button>
 					</block>
@@ -147,14 +138,14 @@
 			}
 
 
-			// let args = uni.getStorageSync('args'); // 如果 args 里有 username 字段，则是已登录状态
+			
 			let args = {
 				iconUrl: 'https://thirdwx.qlogo.cn/mmopen/vi_32/o7Jeib8cHKLY1iclc71KqVcMYKks0KV6CQENCria8c3sPqT5ZfVZEVbqG1sGmpu57Ry3Vz8ZcBdQuueeOZs4GKZEg/132',
 				nickName: '騰丶',
-				username: '20014260415',
+				username: 'xxxxxx',
 				school: "广东石油化工学院"
 			}
-
+			 args = uni.getStorageSync('args')?uni.getStorageSync('args'):args; // 如果 args 里有 username 字段，则是已登录状态
 			console.log(args.username);
 
 			if (args.username) {
@@ -164,13 +155,12 @@
 				});
 			}
 
-			this.handleStudyDate();
-			this.handleStudyWeek();
 		},
 		onShareAppMessage: function(res) {
-			return {
-				title: 'WE校园'
-			};
+				return {
+					title: 'WE校园'
+				};
+			
 		},
 		methods: {
 			school(e) {
@@ -201,9 +191,18 @@
 
 			about(e) {
 				console.log(222222)
-				uni.navigateTo({
-					url: '/pages/myself/pages/about/about'
-				});
+				uni.setClipboardData({
+					data:"https://github.com/yangziteng/Terminal-exercise-club/tree",
+					success: function () {
+						uni.showToast({
+							title:"已复制到剪切板https://github.com/yangziteng/Terminal-exercise-club/tree"
+						})
+				}
+				})
+				
+				// uni.navigateTo({
+				// 	url: '/pages/myself/pages/about/about'
+				// });
 			},
 
 			journal(e) {
@@ -225,6 +224,9 @@
 							uni.redirectTo({
 								url: '/pages/login/login'
 							});
+							uni.removeStorageSync('args');
+							//把数据清空
+							//zzzzzzz标识
 						} else if (res.cancel) {
 							console.log('用户点击取消');
 						}
@@ -242,7 +244,7 @@
 </script>
 <style>
 	.page {
-		background-color: rgb(249, 249, 249);
+		background-color: #12C8B9;
 	}
 
 	.container {
