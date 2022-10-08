@@ -1,121 +1,116 @@
 <template>
 	<view>
-			
-		<view class="cu-timeline">
-				<view class="cu-time" style="width: auto; margin-top: 20rpx;">感谢您报名我们的活动,请及时查看活动信息</view>
-				<view class="cu-item">
-					<view class="content" style="display: flex;flex-direction: column;">
-						<view><text >活动：</text>{{content.content.Title}}</view>
-						<view v-for="(item,index) in (content.content.association)" :key="index"><text style="line-height: 60rpx;" >{{item.name}}：</text>
-		
-							{{item.detail}}
-						</view>
-					</view>
-				</view>
-			</view>
-			
+    <!-- <view class="cu-bar bg-white solid-bottom">
+                    <view class='action'>
+                      <text class='cuIcon-titles text-orange '></text> <view class="action_text">We校园社团</view>
+                    </view>
+                  </view> -->
+            <!-- 社团活动卡片 -->
+            <view class="cu-card dynamic" v-if="act_list"  :data-content="item" v-for="(item,index) in (act_list)" :key="index" @click="gotoSchedule(item.index)">
+                <view class="cu-item shadow" style="margin: 30rpx">
+                    <view class="cu-list menu-avatar">
+                        <view class="cu-item">
+                            <image :src="item.content.logoUrl" class="cu-avatar round lg ttt"></image>
+							 
+                            <!-- <view class="cu-avatar round lg ttt" style="background-image:url({{item.url}});"></view> -->
+                            <view class="content flex-sub">
+                                <view>{{ item.content.association[0].detail }}</view>
+                                <view class="text-gray text-sm flex justify-between">
+                                    {{ item.time }}
+                                </view>
+                            </view>
+                            <view class="ttt" :style="'margin-right: 25rpx; font-size: 28rpx; font-weight: 550;  color: ' + (item.status == '通过' ? '#98c898' : '#cc463d') + ';'">{{ item.status }}</view>
+                        </view>
+                    </view>
+                    <view class="text-content">
+                        {{ item.Title }}
+                    </view>
+                    <view class="grid flex-sub padding-lr col-1">
+						<image :src="item.content.Cover" class="bg-img only-img ttt" mode="aspectFill"></image>
+                        
+                        <!-- <view class="bg-img only-img ttt" style="background-image:url({{item.image}});" wx:key="{{index}}">
+                        </view> -->
+                    </view>
+                    <view class="text-gray text-sm text-right padding"></view>
+                </view>
+            </view>
+            <view v-if="act_list" style="font-size: 26rpx; color: #ababab; width: 100vw; display: flex; align-items: center; justify-content: center; margin-top: 50rpx; padding-bottom: 100rpx; " >- - 无更多内容 - -</view>
+            <view v-if="!act_list" style="color: #ababab; width: 100vw; display: flex; align-items: center; justify-content: center; margin-top: 100rpx">- - 暂时没有数据，快去报名吧 - -</view>
 
-		
-		
-		<view class="cu-timeline">
-			  <view class="cu-time" style="width: 120rpx;">{{content.time}}</view>
-				<view class="cu-item">
-					<view class="content" style="display: flex;flex-direction: column;">
-						<view><text style="line-height: 60rpx;">成功报名</text> <text style="font-weight:550;">{{content.content.association[0].detail}} </text> <text >的：</text> {{content.content.Title}}</view>
-						<view><text style="line-height: 60rpx; ">姓名：</text> {{content.formData['姓名']}}</view>
-						<view><text style="line-height: 60rpx; ">学号：</text> {{content.formData['学号']}}</view>
-						<view><text style="line-height: 60rpx; ">联系方式：</text> {{content.formData['联系方式']}}</view>
-						<view style="display: flex;"><text style="line-height: 60rpx; ">选择的部门：</text>
-							<view v-for="(item,index) in (content.formData['选择的部门'])" :key="index"><text :decode="true" style="line-height: 60rpx; ">{{item}}&ensp;</text>
-
-							</view>
-						</view>
-					</view>
-				</view>
-			</view>
-			
-			
-
-
-			<view class="cu-timeline" v-for="(item,index) in (content.interviewMsg)" :key="index">
-					 <view class="cu-time">{{item.sendTime}}</view>
-						<view :class="'cu-item '+((item.index+1) == content.interviewMsg.length?'text-blue':'')">
-							<view class="content">
-								<view class="cu-capsule radius">
-									<view class="cu-tag bg-cyan">活动时间：{{item.time}}</view>
-			
-								</view>
-								<view class="margin-top">活动标题: {{item.title}}</view>
-								<view class="margin-top">面试/活动地点: {{item.site}}</view>
-								<view class="margin-top">所需材料: {{item.need}}</view>
-								<view class="margin-top">联系方式: {{item.phonenum}}</view>
-								<view class="margin-top">备注: {{item.remark}}</view>
-							</view>
-						</view>
-				</view>
-			
-
-		
-		
 	</view>
 </template>
 
+<script>
 
-<script >
-// pages/association_new/activity_schedule/activity_schedule.js
 		export default {
-			data() {
-				return {
-				content:{},
-				index:1
-				};
-			},
-			onLoad(e) {
-				console.log(e),
-				this.index=e.index
-			   uni.request({
-			    //接口不存在url:"http://127.0.0.1:4523/m1/1710071-0-default/my_activity/list/"+this.index,
-			   	url:"http://127.0.0.1:4523/m1/1710071-0-default/my_activity/list",
-			   	method:"POST",
-			   	success:res=>{
-			   	    console.log(res)
-					this.content=res.data.result.data.data[0]
-			   			   },
-			   })
-			},
-			/**
-				* 生命周期函数--监听页面初次渲染完成
-				*/
-			onReady() {},
-			/**
-				* 生命周期函数--监听页面显示
-				*/
-			onShow() {},
-			/**
-				* 生命周期函数--监听页面隐藏
-				*/
-			onHide() {},
-			/**
-				* 生命周期函数--监听页面卸载
-				*/
-			onUnload() {},
-			/**
-				* 页面相关事件处理函数--监听用户下拉动作
-				*/
-			onPullDownRefresh() {},
-			/**
-				* 页面上拉触底事件的处理函数
-				*/
-			onReachBottom() {},
-			/**
-				* 用户点击右上角分享
-				*/
-			onShareAppMessage() {},
-			}
+			  data() {
+				  
+			  	return {
+			  	act_list:[]
+				
+			  	};
+			  },
 
+			  methods: {
+			  	gotoSchedule(e) {
+			       console.log(e);
+			  		uni.navigateTo({
+			  			url:"/pages/schedule/schedule?index="+e
+			  					})
+			  	        },
+				
+				getData(){
+					uni.request({
+						
+						url:"http://127.0.0.1:4523/m1/1710071-0-default/my_activity/list",
+						method:"POST",
+						success:res=>{
+						    console.log(res)
+								  		this.act_list=res.data.result.data.data
+								   },
+				})
+				}
+				
+			  },
+			  
+			  onLoad() {
+			     this.getData();
+			  },
+			  
+			  /**
+			  	* 生命周期函数--监听页面初次渲染完成
+			  	*/
+			  onReady() {},
+			  /**
+			  	* 生命周期函数--监听页面显示
+			  	*/
+			  onShow() {},
+			  /**
+			  	* 生命周期函数--监听页面隐藏
+			  	*/
+			  onHide() {},
+			  /**
+			  	* 生命周期函数--监听页面卸载
+			  	*/
+			  onUnload() {},
+			  /**
+			  	* 页面相关事件处理函数--监听用户下拉动作
+			  	*/
+			  onPullDownRefresh() {},
+			  /**
+			  	* 页面上拉触底事件的处理函数
+			  	*/
+			  onReachBottom() {},
+			  /**
+			  	* 用户点击右上角分享
+			  	*/
+			  onShareAppMessage() {},
+				}
+		
 </script>
 
 <style lang="scss">
-  @import "./schedule.css";
+	@import "./my_activity.css";
+
 </style>
 
