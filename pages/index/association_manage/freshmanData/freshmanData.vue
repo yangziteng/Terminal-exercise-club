@@ -33,8 +33,6 @@
 
 <script>
 // pages/association/freshmanData/freshmanData.js
-const db = wx.cloud.database();
-let count = '';
 export default {
     data() {
         return {
