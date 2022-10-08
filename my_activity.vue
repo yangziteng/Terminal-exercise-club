@@ -41,7 +41,7 @@
 </template>
 
 <script>
-	// pages/association_new/activity_schedule/activity_schedule.js
+
 		export default {
 			  data() {
 				  
@@ -113,4 +113,5 @@
 	@import "./my_activity.css";
 
 </style>
+
 
