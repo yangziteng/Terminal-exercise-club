@@ -6,7 +6,7 @@
 				<view class="cu-item">
 					<view class="content" style="display: flex;flex-direction: column;">
 						<view><text >活动：</text>{{content.content.Title}}</view>
-						<view v-for="(item,index) in (content.content.association[0])" :key="index"><text style="line-height: 60rpx;" >{{item.name}}：</text>
+						<view v-for="(item,index) in (content.content.association])" :key="index"><text style="line-height: 60rpx;" >{{item.name}}：</text>
 		
 							{{item.detail}}
 						</view>
