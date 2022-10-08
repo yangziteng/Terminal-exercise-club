@@ -80,8 +80,6 @@
                                                     </view>
                                                     <view class="grid flex-sub padding-lr col-1">
                                                         <image class="bg-img only-img" :src="item.Cover" mode="widthFix"></image>
-                                                        <!-- <view class="bg-img only-img" style="background-image:url({{item.Cover}});" wx:key="{{index}}">
-                        </view> -->
                                                     </view>
                                                     <view
                                                         class="text-gray text-sm text-right padding"
@@ -155,8 +153,7 @@
                                     </view>
                                     <view class="grid flex-sub padding-lr col-1">
                                         <image :src="item.content.Cover" class="bg-img only-img" mode="widthFix"></image>
-                                        <!-- <view class="bg-img only-img" style="background-image:url({{item.image}});" wx:key="{{index}}"> -->
-                                        <!-- </view> -->
+
                                     </view>
                                     <view class="text-gray text-sm text-right padding"></view>
                                 </view>
@@ -166,12 +163,6 @@
                 </view>
             </swiper-item>
         </swiper>
-
-        <!-- <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-  <swiper-item wx:for="{{4}}" wx:key>
-    <image src="https://image.weilanwl.com/img/4x3-{{index+1}}.jpg" mode='aspectFill'></image>
-  </swiper-item>
-</swiper> -->
     </view>
 </template>
 
@@ -187,87 +178,7 @@ export default {
 
             TabCur: 0,
 
-            list: [
-                {
-                    id: 0,
-                    name: 'We校园',
-                    actArr: [
-                        {
-                            url: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                            title: 'we校园活动一',
-                            text: '2022招新啦!!!点击卡片报名吧',
-                            image: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                            sendTime: '2022年5月20日'
-                        }
-                    ]
-                },
-                {
-                    id: 1,
-                    name: '社联',
-                    actArr: [
-                        {
-                            url: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                            title: '社联活动一',
-                            text: '2022招新啦!!!点击卡片报名吧',
-                            image: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                            sendTime: '2022年5月20日'
-                        }
-                    ]
-                },
-                {
-                    id: 2,
-                    name: '棋协',
-                    actArr: [
-                        {
-                            url: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                            title: '棋协活动一',
-                            text: '2022招新啦!!!点击卡片报名吧',
-                            image: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                            sendTime: '2022年5月20日'
-                        }
-                    ]
-                },
-                {
-                    id: 3,
-                    name: '毽子协会',
-                    actArr: [
-                        {
-                            url: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                            title: '毽子协会活动一',
-                            text: '2022招新啦!!!点击卡片报名吧',
-                            image: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                            sendTime: '2022年5月20日'
-                        }
-                    ]
-                },
-                {
-                    id: 4,
-                    name: '兵乓球协会',
-                    actArr: [
-                        {
-                            url: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                            title: '兵乓球协会活动一',
-                            text: '2022招新啦!!!点击卡片报名吧',
-                            image: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                            sendTime: '2022年5月20日'
-                        }
-                    ]
-                },
-                {
-                    id: 5,
-                    name: '学生会',
-                    actArr: [
-                        {
-                            url: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                            title: '学生会活动一',
-                            text: '2022招新啦!!!点击卡片报名吧',
-                            image: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                            sendTime: '2022年5月20日'
-                        }
-                    ]
-                }
-            ],
-
+            list:'',
             MainCur: 0,
             load: true,
 
@@ -276,25 +187,7 @@ export default {
                 name: 'we校园'
             },
 
-            myActivity: [
-                {
-                    url: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                    title: 'we校园活动一',
-                    text: '2022招新啦!!!点击卡片报名吧',
-                    image: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                    sendTime: '2022年5月20日',
-                    status: '进行中'
-                },
-                {
-                    url: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                    title: 'we校园活动二',
-                    text: '2023招新啦!!!点击卡片报名吧',
-                    image: 'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/WeSchool.jpg?sign=96086122a97f7440a80a9518373319b3&t=1661712461',
-                    sendTime: '2022年5月20日',
-                    status: '已结束'
-                }
-            ],
-
+            myActivity:'',
             mess_list: '',
             my_act: ''
         };
@@ -303,32 +196,44 @@ export default {
      * 生命周期函数--监听页面加载
      */,
     onLoad(options) {
-        uni.showLoading({
-            title: '加载中'
-        });
+		// 本地测试数据
         this.myAct();
         const args = uni.getStorageSync('args');
         const school = args.school;
-		//数据获取
-        wx.cloud
-            .callFunction({
-                name: 'association',
-                data: {
-                    action: 'getMess',
-                    data: {
-                        school
-                    }
-                }
-            })
-            .then((res) => {
-                console.log();
-                this.setData({
-                    mess_list: res.result.data.data
-                });
-                uni.hideLoading({
-                    success: (res) => {}
-                });
-            });
+		let mess_list=[]
+		let my_act=[]
+ 		let testdata = {
+			logoUrl:"../../../../static/logo.png",
+			Cover:"../../../../static/logo.png",
+			endTime:"2022.09.22",
+			Title:"test Title",
+			association:[
+				{
+					detail:"test detail",
+				}
+			],
+			
+		}
+		let testdata2 = {
+			content:{
+				logoUrl:"../../../../static/logo.png",
+				Title:"TestTitle",
+				endTime:"2020.09.22",
+				Cover:"../../../../static/logo.png",
+			},
+			status:"通过"
+		}
+		for(let i=1;i<=3;i++){
+			mess_list.push(testdata)
+			my_act.push(testdata2)
+		} 
+		this.setData({
+		    mess_list: mess_list,
+			my_act:my_act
+		});
+		// 接口调用
+		// 添加真实接口
+
     },
     methods: {
         gotoSchedule(e) {
@@ -336,7 +241,7 @@ export default {
             console.log(content_n);
             let content = JSON.stringify(content_n);
             uni.navigateTo({
-                url: '../activity_schedule/activity_schedule?content=' + content
+                url: '../activity_schedule/index?content=' + content
             });
         },
 
@@ -406,28 +311,17 @@ export default {
         },
 
         myAct() {
-            //
-            wx.cloud
-                .callFunction({
-                    name: 'association',
-                    data: {
-                        action: 'myApply',
-                        data: {}
-                    }
-                })
-                .then((res) => {
-                    this.setData({
-                        my_act: res.result.data.data
-                    });
-                });
+			//接口调用
+			//添加真实接口
         },
 
         goBao(e) {
             let index = e.currentTarget.dataset.index;
             let content = JSON.stringify(this.mess_list[index]);
-            uni.navigateTo({
-                url: '/pages/more/pages/Freshman/Freshman?content=' + content
-            });
+			//不进行页面跳转，添加一个接口，点击报名后将活动信息写入我的活动
+            // uni.navigateTo({
+            //     url: '../Freshman/index?content=' + content
+            // });
         }
     }
 };
