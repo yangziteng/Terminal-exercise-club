@@ -6,8 +6,7 @@
                     </view>
                   </view> -->
             <!-- 社团活动卡片 -->
-			
-            <view class="cu-card dynamic" v-if="act_list" @tap="gotoSchedule" :data-content="item" v-for="(item, index) in (act_list)" :key="index">
+            <view class="cu-card dynamic" v-if="act_list"  :data-content="item" v-for="(item,index) in (act_list)" :key="index" @click="gotoSchedule(item.index)">
                 <view class="cu-item shadow" style="margin: 30rpx">
                     <view class="cu-list menu-avatar">
                         <view class="cu-item">
@@ -44,49 +43,37 @@
 <script>
 	// pages/association_new/activity_schedule/activity_schedule.js
 		export default {
-			data() {
-				return {	
-					act_list:[
-						{content:{
-							Title:"纳新活动",
-                            time:"2022.10.10",
-							association: [
-							 {name:"swimcl",detail:"游泳社"},],
-							 
-							 Cover:"",
-							 logoUrl: "Image(images/hyjj.jpg)",
-							 status:"未通过",
-							   }},
-						{content:{
-							   	Title:"纳新活动",
-							       time:"2022.10.5",
-							   	association: [
-							   	 {name:"runcl",detail:"跑步社"},],
-							   	 
-							   	 Cover:"cover喽",
-							   	 
-							   	 status:"通过",
-							   	   }},
-							]
-							
-				}
-			  },
 			  data() {
 			  	return {
 			  	act_list:[]
 			  	};
 			  },
+
+			  methods: {
+			  	gotoSchedule(e) {
+			       console.log(e);
+			  		uni.navigateTo({
+			  			url:"/pages/schedule/schedule"
+			  					})
+			  	        },
+				
+				getData(){
+					uni.request({
+						url:"http://127.0.0.1:4523/m1/1710071-0-default/my_activity/list?index=",
+						method:"POST",
+						success:res=>{
+						    console.log(res)
+								  		this.act_list=res.data.result.data.data
+								   },
+				})
+				}
+				
+			  },
 			  
 			  onLoad() {
-			     uni.request({
-			     	url:"http://127.0.0.1:4523/m1/1710071-0-default/my_activity/list",
-			     	method:"POST",
-			     	success:res=>{
-			     	    console.log(res)
-			  		this.act_list=res.data.result.data.data
-			     			   },
-			     })
+			     this.getData();
 			  },
+			  
 			  /**
 			  	* 生命周期函数--监听页面初次渲染完成
 			  	*/
@@ -115,7 +102,6 @@
 			  	* 用户点击右上角分享
 			  	*/
 			  onShareAppMessage() {},
-			  methods: {}
 				}
 		
 </script>
