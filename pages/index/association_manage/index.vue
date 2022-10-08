@@ -2,10 +2,10 @@
 	<view>
 		<view class="wrap" v-if="HtmlStatus == 0">
 			<view class="caption">
-				<view class="title">社团/协会负责人信息</view>
+				<view class="title">社团招新信息</view>
 			</view>
-			<view class="tip">·请填写真实信息</view>
-			<view class="tip">·个人信息不用于展示</view>
+			<!-- <view class="tip">·请填写真实信息</view> -->
+			<!-- <view class="tip">·个人信息不用于展示</view> -->
 			<view class="list_wrap">
 				<form @submit="formSubmit">
 					<view class="list_item">
@@ -20,18 +20,7 @@
           {{img==false?'+':'已上传'}}
         </view> -->
 					</view>
-					<view class="list_item">
-						<view class="left2">群二维码</view>
-						<view v-if="!img2" @tap="add_logo">
-							<image class="add_logo_img" data-name="qun" src="./images/paizhao.png"></image>
-						</view>
-						<view v-if="img2" @tap="add_logo">
-							<image class="add_logo_img" data-name="qun" :src="imgUrl2"></image>
-						</view>
-						<!-- <view class="add_logo" bind:tap="{{img==false?'add_logo':'showTip'}}">
-          {{img==false?'+':'已上传'}}
-        </view> -->
-					</view>
+					
 					<view class="list_item" v-for="(item, index) in list" :key="index">
 						<view style="display: flex; flex: 1" v-if="item.title == '社团介绍'">
 							<view class="left">{{ item.title }}</view>
@@ -65,7 +54,7 @@
 							<view style="font-size: 20rpx; padding-top: 0rpx">(空格分隔)</view>
 						</view>
 
-						<input placeholder="策划部 事务部 综合部 设计部 技术部" class="rigth" name="department" :value="department" />
+						<input placeholder="策划部 事务部 综合部 设计部 技术部" class="rigth" name="department" v-model="department" />
 					</view>
 
 					<button class="submit" size="mini" formType="submit">提交</button>
@@ -144,20 +133,7 @@
 				arrayIndex2: 0,
 				arrayIndex: 0,
 
-				list: [{
-						title: '联系人',
-						placeholder: '负责人姓名',
-						type: 'text',
-						value: '',
-						id: 'name'
-					},
-					{
-						title: '联系方式',
-						placeholder: '电话号码',
-						type: 'text',
-						value: '',
-						id: 'phone'
-					},
+				list: [
 					{
 						title: '社团/机构',
 						placeholder: '输入名称',
@@ -165,13 +141,7 @@
 						value: '',
 						id: 'association'
 					},
-					{
-						title: '学号',
-						placeholder: '输入学号',
-						type: 'text',
-						value: '',
-						id: 'card'
-					},
+					
 					{
 						title: '社团介绍',
 						placeholder: '输入社团介绍',
@@ -186,7 +156,7 @@
 					//   id: "department"
 					// },
 				],
-
+				department:[],
 				index_list: [{
 						img: '/static/imgs/association/freshman.png',
 						name: '招新报名',
@@ -208,7 +178,7 @@
 						tapName: 'delete'
 					}
 				],
-
+				id:2,//先写死为社团id
 				data_list: [{
 						img: '/static/pages/association/img/freshman_data.png',
 						name: '招新数据',
@@ -231,7 +201,7 @@
 					}
 				],
 
-				HtmlStatus: 2,
+				HtmlStatus: 0,
 
 				//0为申请 1审核中 2审核通过  3注销中 4管理员 5不存在
 				assoMess: '',
@@ -280,8 +250,21 @@
 			this.onLoadClone3389({});
 		},
 		methods: {
+		
 			tap(e){
 				console.log(e.currentTarget.id)
+				if(e.currentTarget.id=="freshman"){
+						this.freshman()
+				}
+				if(e.currentTarget.id=="edit"){
+					this.edit()
+				}
+				if(e.currentTarget.id=="goFreshmanData"){
+					this.goFreshmanData()
+				}
+				else{
+					this.deleteFun()
+				}
 			},
 			onLoadClone3389: function(options) {
 				//判断登录了没 没有登录的话就提交表单 登录的话就显示第二个状态
@@ -309,15 +292,10 @@
 				});
 			},
 
-			// 赛事反馈
-			goMatchData() {
-				uni.navigateTo({
-					url: '/pages/association/matchData/matchData'
-				});
-			},
-
+		
 			// 查询用户状态
 			search() {
+				
 				console.log("search")
 				let assoMess = [{
 						name: '社团/机构',
@@ -349,7 +327,7 @@
 					HtmlStatus: 4,
 					adminCard: adminCard,
 					assoMess,
-			  erweimaUrl
+				erweimaUrl
 				});
 			},
 			//       search() {
@@ -484,7 +462,7 @@
 			goFreshmanData() {
 				let count = this.adminCard;
 				uni.navigateTo({
-					url: `../association_manage/index?count=${count}`
+					url: `../association_manage/freshmanData?count=${count}`
 				});
 			},
 
@@ -528,7 +506,7 @@
 						});
 						return -1;
 					}
-
+					let args = uni.getStorageSync("args")
 					uni.showModal({
 						title: '提示',
 						content: '确认提交',
@@ -543,20 +521,21 @@
 									title: '提交中',
 									mask: true,
 									success: (result) => {
+										console.log(434)
 										uni.request({
-												url: "http://127.0.0.1:4523/m1/1710071-0-default/manage/apply/submit",
+												url: "https://mock.apifox.cn/m2/1457454-0-default/42693343",
 												method: "POST",
 												data: {
-													status: false,
-													hostMess: data,
-													count: "xxxxxx",
-													logoUrl: this.imgUrl,
-													erweimaUrl: this.imgUrl2,
-													activityCount: 1,
-													personCount: 1,
-													department: department,
-													xueyuan,
-													school_name: this.array[this.arrayIndex]
+													name:args?args.name:"未登录用户",
+													academic: xueyuan,
+													logo: this.imgUrl,
+													status: 1,
+													requirement:data.association,
+													type:this.array[this.arrayIndex],
+													belong: department,
+													desc:data.detail	
+													
+													
 												}
 											})
 
@@ -589,66 +568,12 @@
 					title: '查询中',
 					mask: true,
 					success: (result) => {
-						db.collection('associationApply')
-							.where({
-								count: card,
-								school: args.school
-							})
-							.get()
-							.then((res) => {
-								if (res.data.length == 0) {
-									uni.hideLoading();
-									uni.showToast({
-										title: '没有权限',
-										icon: 'none',
-										image: '',
-										duration: 1500,
-										mask: false,
-										success: (result) => {}
-									});
-								} else {
-									uni.hideLoading();
-									uni.showModal({
-										title: '警告',
-										content: '注销负责人身份',
-										showCancel: true,
-										cancelText: '取消',
-										cancelColor: '#000000',
-										confirmText: '确定',
-										confirmColor: '#3CC51F',
-										success: (result) => {
-											if (result.confirm) {
-												uni.showLoading({
-													title: '注销中',
-													mask: true,
-													success: (res) => {
-														db.collection(
-																'associationApply')
-															.where({
-																count: card,
-																school: args
-																	.school
-															})
-															.update({
-																data: {
-																	status: 0,
-																	apply_to_del: 1
-																}
-															})
-															.then((res) => {
-																uni
-															.hideLoading();
-																this.setData({
-																	HtmlStatus: 3
-																});
-															});
-													}
-												});
-											}
-										}
-									});
-								}
-							});
+						uni.request({
+							url:'https://mock.apifox.cn/m2/1457454-0-default/42694557',
+							method:'POST',
+							id:this.id,
+							status:0
+						})
 					}
 				});
 			},
@@ -660,30 +585,9 @@
 					title: '查询中',
 					mask: true,
 					success: (result) => {
-						db.collection('associationApply')
-							.where({
-								count: card,
-								school: args.school
-							})
-							.get()
-							.then((res) => {
-								if (res.data.length == 0) {
-									uni.hideLoading();
-									uni.showToast({
-										title: '没有权限',
-										icon: 'none',
-										image: '',
-										duration: 1500,
-										mask: false,
-										success: (result) => {}
-									});
-								} else {
-									uni.hideLoading();
-									uni.navigateTo({
-										url: '/pages/association/edit/edit?count=' + card
-									});
-								}
-							});
+						uni.navigateTo({
+							url: '../association_manage/edit/edit?count=' + card
+						});
 					}
 				});
 			},

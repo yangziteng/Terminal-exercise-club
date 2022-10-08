@@ -2,7 +2,7 @@
 	<view class="sun-index">
 		<view class="sun-logo-box">
 			<view class="sun-logo">
-				<image class="sun-icon-img" src="@/static/imgs/moom_white.png" />
+				<image class="sun-icon-img" src="@/static/logo2.png" />
 			</view>
 		</view>
 		<view class="sun-login-box">
@@ -94,12 +94,12 @@
 					icon: 'none',
 					duration: 1500
 				})
-				uni.showToast({
-					title: t('common.success'),
-					duration: 1500
+				uni.showLoading({
+					title:"数据请求中"
 				})
+			
 				uni.request({
-					url: "",
+					url: "https://mock.apifox.cn/m2/1457454-0-default/42653611",
 					method:"POST",
 					data: {
 						"userNumber": this.username,
@@ -109,6 +109,12 @@
 					},
 					success(res){
 						console.log(res)
+						uni.showToast({
+							title:"注册成功"
+						})
+						uni.navigateTo({
+							url:"/pages/login/login"
+						})
 						if(res.data=="注册成功"){
 							uni.showToast({
 								title:"注册成功"
@@ -139,8 +145,8 @@
 	}
 
 	.sun-icon-img {
-		width: 120rpx;
-		height: 120rpx;
+		width: 180rpx;
+		height: 180rpx;
 	}
 
 	.sun-logo {

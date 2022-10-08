@@ -2,7 +2,7 @@
 	<view class="sun-index">
 		<view class="sun-logo-box">
 			<view class="sun-logo">
-				<image class="sun-icon-img" src="@/static/imgs/fire_white.png" />
+				<image class="sun-icon-img" src="@/static/logo2.png" />
 			</view>
 		</view>
 		<view class="sun-login-box">
@@ -58,9 +58,13 @@
 					icon: 'none',
 					duration: 1500
 				})
+				var that = this
+				uni.showLoading({
+					title:'数据请求加载中'
+				})
 				//这步验证
 				uni.request({
-					url:'',
+					url:'https://mock.apifox.cn/m2/1457454-0-default/42651095',
 					method:"POST",
 					data:{
 						userNumber:this.username,
@@ -68,9 +72,10 @@
 					},
 					success(res){
 						console.log(res)
+						uni.hideLoading()
 						uni.setStorageSync("args",{
-							username:res.data.username,
-							name:res.data.name
+							username:that.username,
+							name:that.name
 						})
 					}
 				})
@@ -122,8 +127,8 @@
 	}
 
 	.sun-icon-img {
-		width: 120rpx;
-		height: 120rpx;
+		width: 180rpx;
+		height: 180rpx;
 	}
 
 	.sun-login-box {

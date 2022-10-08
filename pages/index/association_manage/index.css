@@ -1,9 +1,7 @@
 page {
     /* background-color: #f6f6f6; */
 	background-color: rgba(249,249,249,1);
-	position: fixed;
-	width: 100%;
-	height: 100%;
+	
 }
 .wrap {
     /* background-image: linear-gradient(#6ea0a1, #f0eaea); */
@@ -17,6 +15,7 @@ image {
 .wrap .caption {
     padding: 20rpx 24rpx;
     background-color: #6ea0a1;
+	
 }
 .wrap .caption .title {
     font-weight: 700;
