@@ -6,7 +6,7 @@
 				<view class="cu-item">
 					<view class="content" style="display: flex;flex-direction: column;">
 						<view><text >活动：</text>{{content.content.Title}}</view>
-						<view v-for="(item,index) in (content.content.association[0])" :key="index"><text style="line-height: 60rpx;" >{{item.name}}：</text>
+						<view v-for="(item,index) in (content.content.association)" :key="index"><text style="line-height: 60rpx;" >{{item.name}}：</text>
 		
 							{{item.detail}}
 						</view>
@@ -67,10 +67,14 @@
 			data() {
 				return {
 				content:{},
+				index:1
 				};
 			},
-			onLoad() {
+			onLoad(e) {
+				console.log(e),
+				this.index=e.index
 			   uni.request({
+			    //接口不存在url:"http://127.0.0.1:4523/m1/1710071-0-default/my_activity/list/"+this.index,
 			   	url:"http://127.0.0.1:4523/m1/1710071-0-default/my_activity/list",
 			   	method:"POST",
 			   	success:res=>{
@@ -78,14 +82,6 @@
 					this.content=res.data.result.data.data[0]
 			   			   },
 			   })
-			},
-			methods: {
-				gotoSchedule() {
-								uni.navigateTo({
-									url:"/pages/schedule/schedule"
-								})
-					
-				}
 			},
 			/**
 				* 生命周期函数--监听页面初次渲染完成
@@ -116,10 +112,6 @@
 				*/
 			onShareAppMessage() {},
 			}
-			
-			
-
-		
 
 </script>
 
