@@ -25,6 +25,12 @@ public class AssociationController {
         return Result.success(list);
     }
 
+    @GetMapping("/{id}")
+    public Result<AssociationInfo> listById(@PathVariable Long id) {
+        AssociationInfo list = associationService.listById(id);
+        return Result.success(list);
+    }
+
     @PostMapping("/apply")
     public Result<String> apply(HttpServletRequest request, @RequestBody Association association) {
         log.info(association.toString());

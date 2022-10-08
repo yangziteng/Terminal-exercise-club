@@ -34,4 +34,18 @@ public class AssociationServiceImpl extends ServiceImpl<AssociationDao, Associat
         }).collect(Collectors.toList());
         return associationInfos;
     }
+
+    @Override
+    public AssociationInfo listById(Long id) {
+        Association association = this.getById(id);
+
+        AssociationInfo associationInfo = new AssociationInfo();
+        BeanUtils.copyProperties(association, associationInfo);
+
+        Long leaderId = association.getLeaderId();
+        User user = userService.getById(leaderId);
+
+        associationInfo.setLeader(user);
+        return associationInfo;
+    }
 }
