@@ -4,11 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.demo.dao.AssociationDao;
 import com.example.demo.domain.Association;
-import com.example.demo.domain.AssociationUser;
+import com.example.demo.domain.Activities;
 import com.example.demo.domain.User;
 import com.example.demo.dto.AssociationInfo;
 import com.example.demo.service.AssociationService;
-import com.example.demo.service.AssociationUserService;
+import com.example.demo.service.ActivitiesService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class AssociationServiceImpl extends ServiceImpl<AssociationDao, Associat
     @Autowired
     private UserService userService;
     @Autowired
-    private AssociationUserService associationUserService;
+    private ActivitiesService activitiesService;
     @Override
     public List<AssociationInfo> listAll(Integer status) {
         LambdaQueryWrapper<Association> wrapper = new LambdaQueryWrapper<>();
@@ -56,9 +56,9 @@ public class AssociationServiceImpl extends ServiceImpl<AssociationDao, Associat
     @Override
     public List<AssociationInfo> listByUserId(Long id) {
         User user = userService.getById(id);
-        LambdaQueryWrapper<AssociationUser> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(AssociationUser::getUserId, user.getId());
-        List<AssociationUser> list = associationUserService.list(wrapper);
+        LambdaQueryWrapper<Activities> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Activities::getUserId, user.getId());
+        List<Activities> list = activitiesService.list(wrapper);
         List<AssociationInfo> associations = list.stream().map((item)->{
             LambdaQueryWrapper<Association> wrapper1 = new LambdaQueryWrapper<>();
             wrapper1.eq(Association::getId, item.getAssociationId());
