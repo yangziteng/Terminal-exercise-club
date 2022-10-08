@@ -18,6 +18,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/{id}")
+    public Result<User> selectById(@PathVariable Long id) {
+        User user = userService.getById(id);
+        return Result.success(user);
+    }
+
     @PostMapping("/register")
     public Result<String> register(@RequestBody User user) {
         //页面提交的密码进行md5加密
