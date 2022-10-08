@@ -1,1 +1,0 @@
-# Terminal-exercise-club
