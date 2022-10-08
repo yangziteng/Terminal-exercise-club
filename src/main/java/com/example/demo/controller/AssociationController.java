@@ -31,6 +31,12 @@ public class AssociationController {
         return Result.success(list);
     }
 
+    @GetMapping("/user/{id}")
+    public Result<List<AssociationInfo>> listByUserId(@PathVariable Long id) {
+        List<AssociationInfo> list = associationService.listByUserId(id);
+        return Result.success(list);
+    }
+
     @PostMapping("/apply")
     public Result<String> apply(HttpServletRequest request, @RequestBody Association association) {
         log.info(association.toString());

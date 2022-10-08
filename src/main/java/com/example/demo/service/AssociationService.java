@@ -9,4 +9,5 @@ import java.util.List;
 public interface AssociationService extends IService<Association> {
     public List<AssociationInfo> listAll(Integer status);
     public AssociationInfo listById(Long id);
+    public List<AssociationInfo> listByUserId(Long id);
 }
