@@ -35,8 +35,8 @@ public class Association implements Serializable {
     //社团类型
     private String type;
 
-    //所属部门
-    private String belongs;
+//    //所属部门
+//    private String belongs;
 
     //所属学院
     private String academic;

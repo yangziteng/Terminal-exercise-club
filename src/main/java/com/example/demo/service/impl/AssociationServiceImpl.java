@@ -3,17 +3,14 @@ package com.example.demo.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.demo.dao.AssociationDao;
-import com.example.demo.domain.Association;
-import com.example.demo.domain.Activities;
-import com.example.demo.domain.User;
+import com.example.demo.domain.*;
 import com.example.demo.dto.AssociationInfo;
-import com.example.demo.service.AssociationService;
-import com.example.demo.service.ActivitiesService;
-import com.example.demo.service.UserService;
+import com.example.demo.service.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +20,10 @@ public class AssociationServiceImpl extends ServiceImpl<AssociationDao, Associat
     private UserService userService;
     @Autowired
     private ActivitiesService activitiesService;
+    @Autowired
+    private AssociationBelongsService associationBelongsService;
+    @Autowired
+    private ActivitiesBelongsService activitiesBelongsService;
     @Override
     public List<AssociationInfo> listAll(Integer status) {
         LambdaQueryWrapper<Association> wrapper = new LambdaQueryWrapper<>();
@@ -34,6 +35,15 @@ public class AssociationServiceImpl extends ServiceImpl<AssociationDao, Associat
             Long leaderId = item.getLeaderId();
             User user = userService.getById(leaderId);
             associationInfo.setLeader(user);
+
+            LambdaQueryWrapper<AssociationBelongs> wrapper1 = new LambdaQueryWrapper<>();
+            wrapper1.eq(AssociationBelongs::getAssociationId, item.getId());
+            List<AssociationBelongs> belongs = associationBelongsService.list(wrapper1);
+            List<String> belongStr = belongs.stream().map((items)->{
+                String s = items.getBelongs();
+                return s;
+            }).collect(Collectors.toList());
+            associationInfo.setBelongs(belongStr);
             return associationInfo;
         }).collect(Collectors.toList());
         return associationInfos;
@@ -50,6 +60,15 @@ public class AssociationServiceImpl extends ServiceImpl<AssociationDao, Associat
         User user = userService.getById(leaderId);
 
         associationInfo.setLeader(user);
+
+        LambdaQueryWrapper<AssociationBelongs> wrapper1 = new LambdaQueryWrapper<>();
+        wrapper1.eq(AssociationBelongs::getAssociationId, association.getId());
+        List<AssociationBelongs> belongs = associationBelongsService.list(wrapper1);
+        List<String> belongStr = belongs.stream().map((items)->{
+            String s = items.getBelongs();
+            return s;
+        }).collect(Collectors.toList());
+        associationInfo.setBelongs(belongStr);
         return associationInfo;
     }
 
@@ -66,6 +85,15 @@ public class AssociationServiceImpl extends ServiceImpl<AssociationDao, Associat
             AssociationInfo associationInfo = new AssociationInfo();
             BeanUtils.copyProperties(association,associationInfo);
             associationInfo.setLeader(user);
+
+            LambdaQueryWrapper<ActivitiesBelongs> wrapper2 = new LambdaQueryWrapper<>();
+            wrapper2.eq(ActivitiesBelongs::getActivitiesId, item.getId());
+            List<ActivitiesBelongs> belongs = activitiesBelongsService.list(wrapper2);
+            List<String> belongStr = belongs.stream().map((items)->{
+                String s = items.getBelongs();
+                return s;
+            }).collect(Collectors.toList());
+            associationInfo.setBelongs(belongStr);
             return associationInfo;
         }).collect(Collectors.toList());
         return associations;
