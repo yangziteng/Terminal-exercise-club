@@ -6,7 +6,7 @@
 				<view class="cu-item">
 					<view class="content" style="display: flex;flex-direction: column;">
 						<view><text >活动：</text>{{content.content.Title}}</view>
-						<view v-for="(item,index) in (content.content.association)" :key="index"><text style="line-height: 60rpx;" >{{item.name}}：</text>
+						<view v-for="(item,index) in (content.content.association[0])" :key="index"><text style="line-height: 60rpx;" >{{item.name}}：</text>
 		
 							{{item.detail}}
 						</view>
@@ -66,73 +66,57 @@
 		export default {
 			data() {
 				return {
-					content: {
-						content: {
-							Title:"air实验室纳新活动", 
-							association: [
-							 {name:"社团/机构",detail:"air实验室"},
-							 {name:"联系方式",detail:"0123-3456778"},
-							 {name:"联系人",detail:"小张"},
-							 {name:"学号",detail:"22122212"},
-							 {name:"社团详情",detail:"成立于2019年3月，培养学生在人工智能与机器人领域的编程及设计能力。"},
-							 {name:"设立部门",detail:"项目组、视频组、文案组"},]
-						},
-						formData:{
-							姓名:"小白",
-							学号:"22210034",
-							联系方式:"0010-7654321",
-							选择的部门:"项目组、宣传部",
-							},
-						time: "2020-1-2",
-						interviewMsg: [
-							{title:"游泳社" ,sendTime:"2022.10.10", time:"10月15日 10：00",site:"操场",need:"doc",phonenum:"0000-1",remark:"请您准时到场"},
-							{title:"跑步社" , sendTime:"2022.11.10", time:"10月10日 16：00",site:"操场",need:"doc",phonenum:"0000-2",remark:"请您准时到场"},
-							{title:"骑行社" , sendTime:"2022.12.10", time:"11月8日 14：00",site:"操场",need:"doc",phonenum:"0000-3",remark:"请您准时到场"}]
-					}
+				content:{},
+				};
+			},
+			onLoad() {
+			   uni.request({
+			   	url:"http://127.0.0.1:4523/m1/1710071-0-default/my_activity/list",
+			   	method:"POST",
+			   	success:res=>{
+			   	    console.log(res)
+					this.content=res.data.result.data.data[0]
+			   			   },
+			   })
+			},
+			methods: {
+				gotoSchedule() {
+								uni.navigateTo({
+									url:"/pages/schedule/schedule"
+								})
+					
 				}
 			},
-			onLoad(options) {
-					let content = JSON.parse(options.content);
-					console.log(content);
-					if (content.interviewMsg) {
-						for (let i = 0; i < content.interviewMsg.length; i++) {
-							content.interviewMsg[i].index = i;
-						}
-					}
-					this.setData({
-						content
-					});
-				},
-				/**
-					* 生命周期函数--监听页面初次渲染完成
-					*/
-				onReady() {},
-				/**
-					* 生命周期函数--监听页面显示
-					*/
-				onShow() {},
-				/**
-					* 生命周期函数--监听页面隐藏
-					*/
-				onHide() {},
-				/**
-					* 生命周期函数--监听页面卸载
-					*/
-				onUnload() {},
-				/**
-					* 页面相关事件处理函数--监听用户下拉动作
-					*/
-				onPullDownRefresh() {},
-				/**
-					* 页面上拉触底事件的处理函数
-					*/
-				onReachBottom() {},
-				/**
-					* 用户点击右上角分享
-					*/
-				onShareAppMessage() {},
-				methods: {},
+			/**
+				* 生命周期函数--监听页面初次渲染完成
+				*/
+			onReady() {},
+			/**
+				* 生命周期函数--监听页面显示
+				*/
+			onShow() {},
+			/**
+				* 生命周期函数--监听页面隐藏
+				*/
+			onHide() {},
+			/**
+				* 生命周期函数--监听页面卸载
+				*/
+			onUnload() {},
+			/**
+				* 页面相关事件处理函数--监听用户下拉动作
+				*/
+			onPullDownRefresh() {},
+			/**
+				* 页面上拉触底事件的处理函数
+				*/
+			onReachBottom() {},
+			/**
+				* 用户点击右上角分享
+				*/
+			onShareAppMessage() {},
 			}
+			
 			
 
 		
@@ -140,6 +124,6 @@
 </script>
 
 <style lang="scss">
-  @import "./activity_schedule.css";
+  @import "./schedule.css";
 </style>
 
