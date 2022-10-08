@@ -11,24 +11,24 @@
                 <view class="cu-item shadow" style="margin: 30rpx">
                     <view class="cu-list menu-avatar">
                         <view class="cu-item">
-                            <image src="https://img-blog.csdnimg.cn/20210512171051865.png" class="cu-avatar round lg ttt"></image>
-							 <!-- ↑改：请求社团头像<image src="item.content.logoUrl" class="cu-avatar round lg ttt"></image> -->
+                            <image :src="item.content.logoUrl" class="cu-avatar round lg ttt"></image>
+							 
                             <!-- <view class="cu-avatar round lg ttt" style="background-image:url({{item.url}});"></view> -->
                             <view class="content flex-sub">
                                 <view>{{ item.content.association[0].detail }}</view>
                                 <view class="text-gray text-sm flex justify-between">
-                                    {{ item.content.time }}
+                                    {{ item.time }}
                                 </view>
                             </view>
-                            <view class="ttt" :style="'margin-right: 25rpx; font-size: 28rpx; font-weight: 550;  color: ' + (item.content.status == '通过' ? '#98c898' : '#cc463d') + ';'">{{ item.content.status }}</view>
+                            <view class="ttt" :style="'margin-right: 25rpx; font-size: 28rpx; font-weight: 550;  color: ' + (item.status == '通过' ? '#98c898' : '#cc463d') + ';'">{{ item.status }}</view>
                         </view>
                     </view>
                     <view class="text-content">
-                        {{ item.content.Title }}
+                        {{ item.Title }}
                     </view>
                     <view class="grid flex-sub padding-lr col-1">
-						<image src="https://img-blog.csdnimg.cn/20210512171051865.png" class="bg-img only-img ttt" mode="aspectFill"></image>
-                        <!-- ↑改：请求cover图片 <image src="item.content.Cover" class="bg-img only-img ttt" mode="aspectFill"></image> -->
+						<image :src="item.content.Cover" class="bg-img only-img ttt" mode="aspectFill"></image>
+                        
                         <!-- <view class="bg-img only-img ttt" style="background-image:url({{item.image}});" wx:key="{{index}}">
                         </view> -->
                     </view>
@@ -70,6 +70,22 @@
 							]
 							
 				}
+			  },
+			  data() {
+			  	return {
+			  	act_list:[]
+			  	};
+			  },
+			  
+			  onLoad() {
+			     uni.request({
+			     	url:"http://127.0.0.1:4523/m1/1710071-0-default/my_activity/list",
+			     	method:"POST",
+			     	success:res=>{
+			     	    console.log(res)
+			  		this.act_list=res.data.result.data.data
+			     			   },
+			     })
 			  },
 			  /**
 			  	* 生命周期函数--监听页面初次渲染完成
