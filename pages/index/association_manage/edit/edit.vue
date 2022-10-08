@@ -6,9 +6,9 @@
                 <view class="list" v-for="(item, index) in listObj" :key="index">
                     <view class="caption">{{ item.title }}</view>
 
-                    <input v-if="item.name != 'detail'" :value="item.value" class="handle" @tap="item.tap" :name="item.name" :disabled="item.name == 'card' ? true : false" />
+                    <input v-if="item.name != 'detail'" :value="item.value" class="handle" @tap="tap" :id="item.tap" :name="item.name" :disabled="item.name == 'card' ? true : false" />
 
-                    <textarea v-if="item.name == 'detail'" :value="item.value" class="handle2" @tap="item.tap" :name="item.name" />
+                    <textarea v-if="item.name == 'detail'" :value="item.value" class="handle2" @tap="tap" :id="item.tap" :name="item.name" />
                 </view>
                 <view class="list">
                     <view class="caption" style="flex: 0.5">群二维码</view>
@@ -32,8 +32,6 @@
 
 <script>
 // pages/association/edit/edit.js
-let count = '';
-const db = wx.cloud.database();
 export default {
     data() {
         return {
@@ -47,9 +45,9 @@ export default {
      * 生命周期函数--监听页面加载
      */,
     onLoad: function (options) {
-        count = options.count;
-        console.log(count);
-        let args = uni.getStorageSync('args'); // if (count != 'guest') {
+        // count = options.count;
+        // console.log(count);
+        let args = uni.getStorageSync('args') ; // if (count != 'guest') {
         //   count = Number(options.count)
         // }
 
@@ -59,57 +57,63 @@ export default {
             mask: true,
             success: (result) => {
                 // console.log(count);
-                db.collection('associationApply')
-                    .where({
-                        count,
-                        school: args.school
-                    })
-                    .get()
-                    .then((res) => {
-                        console.log(res);
-                        let dataObj = res.data[0].hostMess;
-                        console.log(dataObj);
+                // db.collection('associationApply')
+                //     .where({
+                //         count,
+                //         school: args.school
+                //     })
+                //     .get()
+					uni.request({
+							url:"",
+							method:""
+					}).then((res)=>{
+						//eeeeeeeeee
+					})
+                    .finally(() => {
+                        // console.log(res);
+                        // let dataObj = res.data[0].hostMess;
+                        // console.log(dataObj);
                         that.setData({
                             listObj: [
                                 {
                                     title: '社团名称',
-                                    value: dataObj.association,
+                                    value: "1111", //
                                     tap: 'warnTip',
                                     name: 'association'
                                 },
                                 {
                                     title: '管理员学号',
-                                    value: dataObj.card,
+                                    value: "22222",
                                     tap: 'warnTip',
                                     name: 'card'
                                 },
                                 {
                                     title: '管理员姓名',
-                                    value: dataObj.name,
+                                    value: "333333",
                                     tap: 'getHandle',
                                     name: 'name'
                                 },
                                 {
                                     title: '管理员电话',
-                                    value: dataObj.phone,
+                                    value: "44444",
                                     tap: 'getHandle',
                                     name: 'phone'
                                 },
                                 {
                                     title: '设立部门',
-                                    value: dataObj.department,
+                                    value: "ssadasd",
                                     tap: 'getHandle',
                                     name: 'department'
                                 },
                                 {
                                     title: '社团介绍',
-                                    value: dataObj.detail,
+                                    value: "sadasdas",
                                     tap: 'getHandle',
                                     name: 'detail'
                                 }
                             ],
-                            logoUrl: res.data[0].logoUrl,
-                            erweimaUrl: res.data[0].erweimaUrl || ''
+                            // logoUrl: res.data[0].logoUrl,
+                            // erweimaUrl: res.data[0].erweimaUrl || ''
                         });
                         uni.hideLoading();
                     });
@@ -145,7 +149,15 @@ export default {
      */
     onShareAppMessage: function () {},
     methods: {
+		tap(e){
+			if(e.currentTarget.id=="warnTip"){
+				this.warnTip()
+			}
+		
+			
+		},
         change() {
+			//上传图片
             uni.chooseImage({
                 count: 1,
                 sizeType: ['original', 'compressed'],
@@ -191,7 +203,11 @@ export default {
 
         // 提交表单
         formSubmit(e) {
-            let args = uni.getStorageSync('args');
+			let args = {
+				nickName:'xx用户',
+				username:"xxxx"
+			}
+             args = uni.getStorageSync('args')||args;
             console.log(e);
             let newDate = e.detail.value;
             let that = this;

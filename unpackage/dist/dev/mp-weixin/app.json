@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/login/register/register",
+    "pages/my/my",
+    "pages/index/association/club_activity/index",
+    "pages/index/association_manage/index",
+    "pages/index/association/club_list/index",
+    "pages/index/association/club_detail/index",
+    "pages/index/association_manage/edit/edit",
+    "pages/index/association_manage/freshman/freshman",
+    "pages/index/association_manage/freshmanData/freshmanData",
+    "pages/index/association_manage/freshmanDetail/freshmanDetail"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
