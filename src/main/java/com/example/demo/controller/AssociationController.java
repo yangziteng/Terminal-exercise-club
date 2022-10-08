@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.demo.common.Result;
 import com.example.demo.domain.Association;
+import com.example.demo.dto.AssociationInfo;
 import com.example.demo.service.AssociationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,9 @@ public class AssociationController {
     @Autowired
     private AssociationService associationService;
 
-    @GetMapping
-    public Result<List<Association>> list(Integer status) {
-        LambdaQueryWrapper<Association> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(Association::getStatus, status);
-        List<Association> list = associationService.list(wrapper);
+    @GetMapping("/all/{status}")
+    public Result<List<AssociationInfo>> list(@PathVariable Integer status) {
+        List<AssociationInfo> list = associationService.listAll(status);
         return Result.success(list);
     }
 
