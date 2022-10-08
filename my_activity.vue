@@ -44,8 +44,10 @@
 	// pages/association_new/activity_schedule/activity_schedule.js
 		export default {
 			  data() {
+				  
 			  	return {
 			  	act_list:[]
+				
 			  	};
 			  },
 
@@ -53,13 +55,14 @@
 			  	gotoSchedule(e) {
 			       console.log(e);
 			  		uni.navigateTo({
-			  			url:"/pages/schedule/schedule"
+			  			url:"/pages/schedule/schedule?index="+e
 			  					})
 			  	        },
 				
 				getData(){
 					uni.request({
-						url:"http://127.0.0.1:4523/m1/1710071-0-default/my_activity/list?index=",
+						
+						url:"http://127.0.0.1:4523/m1/1710071-0-default/my_activity/list",
 						method:"POST",
 						success:res=>{
 						    console.log(res)
