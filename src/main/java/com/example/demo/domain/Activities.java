@@ -17,7 +17,7 @@ public class Activities implements Serializable {
 
     private Long userId;
 
-    //申请状态(0,申请成功;1,待审核;2,申请失败)
+    //申请状态(0,申请成功;1,待审核;2,面试中;3,失败)
     private Long status;
 
     @TableField(fill = FieldFill.INSERT)
