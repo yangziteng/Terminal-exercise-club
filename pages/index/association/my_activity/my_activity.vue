@@ -10,23 +10,24 @@
                 <view class="cu-item shadow" style="margin: 30rpx">
                     <view class="cu-list menu-avatar">
                         <view class="cu-item">
-                            <image :src="item.logo" class="cu-avatar round lg ttt"></image>
+                            <image src="https://img.zcool.cn/community/010d6b55d5b23b6ac7251df8f6f0f1.png@1280w_1l_2o_100sh.png" class="cu-avatar round lg ttt"></image>
 							 
                             <!-- <view class="cu-avatar round lg ttt" style="background-image:url({{item.url}});"></view> -->
                             <view class="content flex-sub">
-                                <view>{{ item.academic }}</view>
+                                <view>{{ item.academic }} <text>社</text></view>
                                 <view class="text-gray text-sm flex justify-between">
                                     {{ item.updateTime }}
                                 </view>
                             </view>
-                            <view class="ttt" :style="'margin-right: 25rpx; font-size: 28rpx; font-weight: 550;  color: ' + (item.status == '通过' ? '#98c898' : '#cc463d') + ';'">{{ item.status }}</view>
+                            <view class="ttt" :style="'margin-right: 25rpx; font-size: 28rpx; font-weight: 550;  color: ' + (item.status == '通过' ? '#98c898' : '#cc463d') + ';'"><text>未通过</text></view>
+							<!-- <view class="ttt" :style="'margin-right: 25rpx; font-size: 28rpx; font-weight: 550;  color: ' + (item.status == '通过' ? '#98c898' : '#cc463d') + ';'">{{ item.status }}</view> -->
                         </view>
                     </view>
                     <view class="text-content">
-                        {{ item.name }}
+                        <text>纳新进行中，</text>{{ item.name }}
                     </view>
                     <view class="grid flex-sub padding-lr col-1">
-						<image :src="item.logo" class="bg-img only-img ttt" mode="aspectFill"></image>
+						<image src="https://image.16pic.com/00/93/78/16pic_9378607_s.jpg?imageView2/0/format/png" class="bg-img only-img ttt" mode="aspectFill"></image>
                         
                         <!-- <view class="bg-img only-img ttt" style="background-image:url({{item.image}});" wx:key="{{index}}">
                         </view> -->
