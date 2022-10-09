@@ -5,10 +5,10 @@
 				<view class="cu-time" style="width: auto; margin-top: 20rpx;">感谢您报名我们的活动,请及时查看活动信息</view>
 				<view class="cu-item">
 					<view class="content" style="display: flex;flex-direction: column;">
-						<view><text style="line-height: 60rpx;">活动：</text>{{content.name}}</view>
+						<view><text style="line-height: 60rpx;">活动：</text>{{content.name}} 纳新啦!</view>
 						<view><text style="line-height: 60rpx;">社团/机构：</text>{{content.academic}}</view>
 						<view><text style="line-height: 60rpx;">活动联系人：</text>{{content.leaderId}}</view>
-						<view><text style="line-height: 60rpx;">联系方式：</text></view>
+						<view><text style="line-height: 60rpx;">联系方式：220-1234567</text></view>
 						<view><text style="line-height: 60rpx;">社团详情：</text>{{content.description}}</view>
 						<view><text style="line-height: 60rpx;">开设部门：</text></view>
 		<!-- 				<view v-for="(item,index) in (content.content.association)" :key="index"><text style="line-height: 60rpx;" >{{item.name}}：</text>
@@ -53,7 +53,6 @@
 								<view class="margin-top">活动标题: {{content.name}}</view>
 								<view class="margin-top">面试/活动地点: {{content.requirement}}</view>
 								<view class="margin-top">所需材料: {{content.requirement}}</view>
-								<view class="margin-top">联系方式: </view>
 								<view class="margin-top">备注: </view>
 								<!-- <view class="margin-top">联系方式: {{content.phonenum}}</view>
 								<view class="margin-top">备注: {{content.remark}}</view> -->
