@@ -1,0 +1,193 @@
+page {
+    background: #f5f5f5;
+}
+.cu-bar {
+    display: flex;
+    position: relative;
+    align-items: center;
+    min-height: 100rpx;
+    justify-content: space-between;
+}
+.solid-bottom {
+    position: relative;
+}
+
+.cu-bar .action:first-child {
+    margin-left: 30rpx;
+    font-size: 30rpx;
+}
+.cu-bar .action {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.cu-bar .action:first-child > text[class*='cuIcon-'] {
+    margin-left: -0.3em;
+    margin-right: 0.3em;
+    color: black;
+}
+
+.action_text {
+    color: black;
+}
+
+.cu-card.dynamic {
+    display: block;
+}
+.cu-card {
+    display: block;
+    overflow: hidden;
+}
+
+.cu-card.dynamic > .cu-item {
+    display: block;
+    background-color: white;
+    overflow: hidden;
+}
+.cu-card > .cu-item {
+    display: block;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 10rpx;
+    border-top: 2rpx solid #f5f5f5;
+    border-bottom: 2rpx solid #f5f5f5;
+    /* margin: 30rpx; */
+}
+
+.cu-list.menu-avatar {
+    overflow: hidden;
+}
+
+.cu-list.menu-avatar > .cu-item {
+    position: relative;
+    display: flex;
+    padding-right: 10rpx;
+    height: 140rpx;
+    background-color: white;
+    justify-content: flex-end;
+    align-items: center;
+}
+.cu-list > .cu-item {
+    transition: all 0.6s ease-in-out 0s;
+    transform: translateX(0rpx);
+}
+
+.cu-list.menu-avatar > .cu-item > .cu-avatar {
+    position: absolute;
+    left: 30rpx;
+}
+.cu-avatar.lg {
+    width: 96rpx;
+    height: 96rpx;
+    font-size: 2em;
+}
+.cu-avatar {
+    font-variant: small-caps;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+    color: white;
+    white-space: nowrap;
+    position: relative;
+    width: 64rpx;
+    height: 64rpx;
+    background-size: cover;
+    background-position: center;
+    vertical-align: middle;
+    font-size: 1.5em;
+}
+.round {
+    border-radius: 5000rpx;
+}
+
+.flex-sub {
+    flex: 1;
+}
+.cu-list.menu-avatar > .cu-item .content.flex-sub {
+    width: calc(100% - 96rpx - 60rpx - 20rpx);
+	margin-top: 26rpx;
+}
+.cu-list.menu-avatar > .cu-item .content {
+    position: absolute;
+    left: 146rpx;
+    width: calc(100% - 96rpx - 60rpx - 120rpx - 20rpx);
+    line-height: 1.6em;
+}
+.cu-list.menu-avatar > .cu-item .content > view:first-child {
+    font-size: 30rpx;
+    display: flex;
+    align-items: center;
+}
+.text-gray,
+.line-gray,
+.lines-gray {
+    color: gray;
+}
+.text-sm {
+    font-size: 24rpx;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.flex {
+    display: flex;
+}
+.text-content {
+    line-height: 1.6;
+}
+.cu-card.dynamic > .cu-item > .text-content {
+    padding: 0 30rpx 0;
+    max-height: 6.4em;
+    overflow: hidden;
+    font-size: 30rpx;
+    margin-bottom: 20rpx;
+}
+.padding-lr {
+    padding-left: 30rpx;
+    padding-right: 30rpx;
+}
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.bg-img {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.grid.col-1 > view {
+    width: 100%;
+}
+.cu-card.dynamic > .cu-item .only-img {
+    width: 100%;
+    height: 320rpx;
+    border-radius: 6rpx;
+}
+.text-gray,
+.line-gray,
+.lines-gray {
+    color: gray;
+}
+.text-right {
+    text-align: right;
+}
+.text-sm {
+    font-size: 24rpx;
+}
+.padding {
+    padding: 30rpx;
+}
+
+@media (prefers-color-scheme: dark) {
+    .ttt {
+        filter: invert(1) !important;
+    }
+}
